@@ -1,3 +1,4 @@
+//Original cinnamon roll constructor 
 function Original(glazing, amount) {
     this.glazing = glazing;
     this.amount = amount;
@@ -7,6 +8,7 @@ function Original(glazing, amount) {
     this.image = 'img/left-card.jpg';
   }
 
+//vanilla cinnamon roll constructor 
 function Vanilla(glazing, amount) {
     this.glazing = glazing;
     this.amount = amount;
@@ -16,6 +18,7 @@ function Vanilla(glazing, amount) {
     this.image = 'img/middle-card.jpg';
 }
 
+//pumpkin spice cinnamon roll constructor
 function PumpkinSpice(glazing, amount) {
     this.glazing = glazing;
     this.amount = amount;
@@ -24,6 +27,8 @@ function PumpkinSpice(glazing, amount) {
     this.image_alt = 'pumpkin spice cinnamon roll';
     this.image = 'img/right-card.jpg';
 }
+
+//display_cart
 function display_cart(creature) {
     let header = document.getElementById("header");
     header.innerHTML = creature.name;
@@ -33,6 +38,7 @@ function display_cart(creature) {
 
 var cinnamon_list = [];
 
+//load the correct image and product details based on what users clicked on the product browsing page
 function onLoad() {
     if(localStorage.getItem("productImage") === "img/left-card.jpg"){
         cinnamon_list.push(new Original("None", "1"));
@@ -52,11 +58,13 @@ function onLoad() {
 
 }
 
+//set image based on user selection
 function changeImage(description)
 {
     localStorage.setItem("productImage", description);
 }
 
+//set glazing based on user selection
 function change(description)
 {
     document.getElementById("dropbtn1").innerHTML=description;
@@ -64,12 +72,14 @@ function change(description)
     food.glazing = description;
 }
 
+//set amount based on user selection
 function changeAmt(description)
 {
     document.getElementById("dropbtn2").innerHTML=description;
     food.amount = description;
 }
 
+//change the text for the cart section on the nav bar to indicate how many items are added to cart
 function addToCart(){
     var cinnamon_num = 0;
     if(sessionStorage.getItem('cinnamon_num')){
@@ -77,12 +87,10 @@ function addToCart(){
     }
     cinnamon_num += 1;
     sessionStorage.setItem('cinnamon_num', cinnamon_num);
-    // // localStorage.setItem("cinnamon_array", cinnamon_list);
-    // localStorage.setItem("cinnamon_num", cinnamon_list.length);
 }
 
+//load the cart with product info
 function loadCart() {
-    // if (cinnamon)
     var food = sessionStorage.getItem("cinnamon_num");
     if (food === null){
         document.getElementById("cart-nav").innerHTML= "Cart(0 new item)";
@@ -92,5 +100,4 @@ function loadCart() {
     else{
         document.getElementById("cart-nav").innerHTML= "Cart (" + food + " new items)";
     }
-
 }
